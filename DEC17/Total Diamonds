@@ -1,0 +1,37 @@
+//https://www.codechef.com/DEC17/problems/VK18
+import java.util.*;
+public class Main{
+  public static void main(String args[]){
+    Scanner sc=new Scanner(System.in);
+    int t=sc.nextInt();
+    long arr[]=new long[1000001];
+    long r=0,x=7;
+    arr[1]=2;
+    arr[2]=12;
+    for(int i=3;i<1000001;i++){
+        x=x-sum((long)(i))+sum((long)(2*i-1));
+        r=sum((long)(2*i));
+        arr[i]=arr[i-1]+x*2+r;
+        x+=r;
+    }
+    int n=0;
+   while(t--!=0){
+      n=sc.nextInt();
+      System.out.println(arr[n]);
+   }
+  }
+  static long sum(long a){
+    long g=0,h=0;
+    while(a>0){
+      long t=a%10;
+      if(t%2==0)
+      g+=t;
+      else
+      h+=t;
+      a/=10;
+    }
+     
+    long ans=Math.abs(g-h);
+    return ans;
+  }
+}  
